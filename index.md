@@ -23,9 +23,9 @@ The objective is to achieve a consistent millisecond time synchronization using 
 
 We conducted a series of measurements to assess the Mean Path Delay for 1000 iterations using `readPtpDiag.sh`, employing three distinct configurations:
 
-- **Moxa as Boundary Clock:** In this configuration, the Moxa serves as the primary clock source.
-- **Moxa as Transparent Clock:** In this configuration, the Moxa functions as a transparent clock, facilitating the conversion between 100Mbps and 1Gbps.
-- **Leaf Switch as Boundary Clock:** In this configuration, the Leaf Switch assumes the role of the boundary clock.
+- **Moxa as Boundary Clock (v2 E2E BC):** In this configuration, the Moxa serves as the primary clock source.
+- **Moxa as Transparent Clock (v2 E2E 2-Step TC):** In this configuration, the Moxa functions as a transparent clock, facilitating the conversion between 100Mbps and 1Gbps.
+- **Leaf Switch as Boundary Clock (Disable IEEE 1588 PTP on the MOXA):** In this configuration, the Leaf Switch assumes the role of the boundary clock.
 
 ![Mean Path Delay](meanpathdelay.png)
 
@@ -35,7 +35,7 @@ The Moxa as Boundary Clock configuration exhibited significant jitter, reaching 
 While the accuracy of 0.1ms may not be the primary concern, it is worth noting that the motion profiles indicate a mean time tick of 4.06 msec and a standard deviation of 3.57 msec. Therefore, a slight deviation from this accuracy level is unlikely to have a significant impact on the overall performance.
 
 ## Recommendation
-Based on these observations, it is recommended to adopt the Transparent Clock mode for the Moxa. This adjustment will be implemented in the moxa1 setting in the near future.
+Based on these observations, it is recommended to adopt the Transparent Clock mode for the Moxa. 
 
 ## Further tuning
 If a jitter of 0.1 milliseconds becomes a concern, we could further optimize the network by:
