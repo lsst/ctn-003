@@ -70,3 +70,49 @@ VLAN might be especially important as the QoS solution might confuse the jGroups
 - [MOXA EDS-G516E-T manual](https://cdn-cms-frontdoor-dfc8ebanh6bkb3hs.a02.azurefd.net/getmedia/e3be8aa7-8a55-48e9-856d-ad9404200344/moxa-managed-ethernet-switch-ui-2.0-fw-5.x-user-manual-v2.7.pdf)
 - [PTP EL6688](https://download.beckhoff.com/download/document/io/ethercat-terminals/el6688_en.pdf)
 - [Manual for CCS Shutter System](https://docs.google.com/document/d/1k-oAwnY8rhwuz5pN1PkQU-riK-ZKio4tmEnwgZLlOFM/edit?tab=t.0#heading=h.t2ammhkqrplq)
+
+## Appendix
+### Q: Offset from master is too large. What should I do?
+
+```
+[ccs@lsstcam-shutter02 20250608TC]$ /usr/local/bin/readPtpDiag.sh
+HCU date and time:           2025-06-08 16:19:47.856438
+PTP version:                 PTPv2 (32)
+PTP state:                   SLAVE (9)
+Clock ID (hex):              00 01 05 ff fe 3e 4c 43
+Master clock ID (hex):       fc 59 c0 ff ff 21 48 03 00 1d
+Grandmaster clock ID (hex):  00 0e fe ff fe 01 15 98
+Offset from master (ns):     516,208,667
+Mean path delay (ns):        6,913
+Steps removed:               4
+Sync msg sequence no.:       10713
+Time scale:                  PTP/TAI (1)
+Offset from UTC (sec):       37
+UTC offset valid?            True
+Leap61?                      False
+Leap59?                      False
+Epoch no.:                   0
+External (PTP) time:         Mon, 14 Jul 2025 19:07:22.492342 UTC
+```
+
+A: Power cycling PLC/HCU will make it small and scattered around 0. (but currently it is still somehow biased by 2ms level.)
+```
+[ccs@lsstcam-shutter02 ~]$ /usr/local/bin/readPtpDiag.sh 
+HCU date and time:           2025-06-09 17:58:35.614918
+PTP version:                 PTPv2 (32)
+PTP state:                   SLAVE (9)
+Clock ID (hex):              00 01 05 ff fe 3e 4c 43
+Master clock ID (hex):       fc 59 c0 ff ff 21 48 03 00 1d
+Grandmaster clock ID (hex):  00 0e fe ff fe 01 15 98
+Offset from master (ns):     -11,662
+Mean path delay (ns):        122,992
+Steps removed:               4
+Sync msg sequence no.:       37388
+Time scale:                  PTP/TAI (1)
+Offset from UTC (sec):       37
+UTC offset valid?            True
+Leap61?                      False
+Leap59?                      False
+Epoch no.:                   0
+External (PTP) time:         Wed, 16 Jul 2025 17:40:44.907797 UTC
+```
