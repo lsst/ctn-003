@@ -18,6 +18,17 @@ The Leaf switch is configured as a Boundary clock.
 
 The PTP client in the Camera is the Beckoff EL6688 device. This device supports a 100Mbps network, while all other networks accessible from the Moxa switch are 1Gbps.
 
+Logically the network system is organized
+
+```
+[GPS/PTP] --1Gbps--> [Leaf] --1Gbps--> [MOXA] --100Mbps--> [Beckhoff]
+                        |                 |
+                        x                 |
+                        |                 +--> [testing device]
+                        |
+                        +--> No PTP signal to the other ports on this leaf
+```
+
 The objective is to achieve a consistent millisecond time synchronization using PTP from GPS in a heterogeneous speed environment. 
 
 ## Analysis
