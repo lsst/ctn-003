@@ -45,3 +45,8 @@ If a jitter of 0.1 milliseconds becomes a concern, we could further optimize the
 - Separating PTP packets to a different VLAN
   
 This is especially important as the QoS solution might confuse the jGroups network traffic, which is the Camera control communication. Constructing a dedicated PTP VLAN is more likely to be a solution.
+
+## References
+- [MOXA EDS-G516E-T manual](https://cdn-cms-frontdoor-dfc8ebanh6bkb3hs.a02.azurefd.net/getmedia/e3be8aa7-8a55-48e9-856d-ad9404200344/moxa-managed-ethernet-switch-ui-2.0-fw-5.x-user-manual-v2.7.pdf)
+- [PTP EL6688](https://download.beckhoff.com/download/document/io/ethercat-terminals/el6688_en.pdf)
+- [Manual for CCS Shutter System](https://docs.google.com/document/d/1k-oAwnY8rhwuz5pN1PkQU-riK-ZKio4tmEnwgZLlOFM/edit?tab=t.0#heading=h.t2ammhkqrplq)
