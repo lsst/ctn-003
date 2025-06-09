@@ -21,3 +21,19 @@ orcid = "0000-0001-6161-8988"
 name = "National Astronomical Observatory of Japan"
 internal_id = "NAOJ"
 address = "2-21-1 Osawa, Mitaka, Tokyo 181-8588, Japan"
+
+[[technote.authors]]
+name.given = "Theo"
+name.family = "Shutt"
+
+[[technote.authors]]
+name.given = "Stuart"
+name.family = "Marshall"
+
+[[technote.authors]]
+name.given = "Tony"
+name.family = "Johnson"
+
+[[technote.authors]]
+name.given = "Julio"
+name.family = "Constanzo "
