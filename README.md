@@ -3,7 +3,7 @@
 
 # Configuring the PTP setting on the MOXA network switch
 
-## CTN-3
+## CTN-003
 
 This document describes how to configure the PTP on the MOXA network switch in the Camera to prevent accidental gap in the motion profile.
 
