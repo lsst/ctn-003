@@ -12,7 +12,7 @@ The shutter system of the LSST Camera utilizes hall sensors and motor encoders t
 The Sonoma Network Time Server, equipped with a PTP/IEEE-1588 system, has been deployed at the Vera C. Rubin Observatory. This device receives GPS signals and utilizes the Precise Timing Protocol (PTP) to transport precise clocks over the Camera network. The Sonoma device functions as a Grandmaster in this network. GPS is configured as follows:
 
 ![GPS configuration 1](figs/gps1.png)
-![GPS configuration 1](figs/gps1.png)
+![GPS configuration 2](figs/gps2.png)
 
 ### Network 
 The Camera network comprises at least two network switches:
