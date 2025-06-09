@@ -5,7 +5,7 @@ This document describes how to configure the PTP on the MOXA network switch in t
 ```
 
 ## Introduction
-The shutter system of the LSST Camera utilizes hall sensors and motor encoders to measure the blade positions. During the testing period and the initial phase of comissioning following the Precise Time Protocol (PTP)'s implementation, a gap of approximately 10 milliseconds was observed. This document outlines the configuration, test outcomes, recommendations, and potential further optimization strategies. 
+The shutter system of the LSST Camera utilizes hall sensors and motor encoders to measure timing of passing the shutter blade. During the testing period and the initial phase of comissioning following the Precise Time Protocol (PTP)'s implementation, a gap of approximately 10 milliseconds was observed. This document outlines the configuration, test outcomes, recommendations, and potential further optimization strategies. 
 
 ## Configuration
 The Sonoma Network Time Server, equipped with a PTP/IEEE-1588 system, has been deployed at the Vera C. Rubin Observatory. This device receives GPS signals and utilizes the Precise Timing Protocol (PTP) to transport precise clocks over the Camera network. The Sonoma device functions as a Grandmaster in this network.
@@ -18,12 +18,16 @@ The Leaf switch is configured as a Boundary clock.
 
 The PTP client in the Camera is the Beckoff EL6688 device. This device supports a 100Mbps network, while all other networks accessible from the Moxa switch are 1Gbps.
 
+We have a spare shutter in the network too, which we used as the testbed for this report.
+
 Logically, the network connection is made as follows:
 ```
-[GPS/PTP] --1Gbps--> [Leaf] --1Gbps--> [MOXA] --100Mbps--> [Beckhoff]
+[GPS/PTP] --1Gbps--> [Leaf] --1Gbps--> [MOXA1] --100Mbps--> [Beckhoff in the Camera]
                         |                 |
-                        x                 |
                         |                 +--> [testing device]
+                        |                 
+                        |--> [MOXA2] --100Mbps [Beckoff in the spare shutter]
+                        x
                         |
                         +--> No PTP signal to the other ports on this leaf
 ```
