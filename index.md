@@ -5,7 +5,7 @@ This document describes how to configure the PTP on the MOXA network switch in t
 ```
 
 ## Introduction
-The shutter system of the LSST Camera utilizes hall sensors and motor encoders to measure the blade positions. During the testing period and the initial phase of operation following the Precise Time Protocol's implementation, a gap of approximately 10 milliseconds was observed. This document outlines the configuration, test outcomes, recommendations, and potential further optimization strategies. 
+The shutter system of the LSST Camera utilizes hall sensors and motor encoders to measure the blade positions. During the testing period and the initial phase of comissioning following the Precise Time Protocol (PTP)'s implementation, a gap of approximately 10 milliseconds was observed. This document outlines the configuration, test outcomes, recommendations, and potential further optimization strategies. 
 
 ## Configuration
 The Sonoma Network Time Server, equipped with a PTP/IEEE-1588 system, has been deployed at the Vera C. Rubin Observatory. This device receives GPS signals and utilizes the Precise Timing Protocol (PTP) to transport precise clocks over the Camera network. The Sonoma device functions as a Grandmaster in this network.
@@ -43,8 +43,10 @@ Based on these observations, it is recommended to adopt the Transparent Clock mo
 If a jitter of 0.1 milliseconds becomes a concern, we could further optimize the network by:
 - Prioritizing PTP packets on the Camera network using QoS
 - Separating PTP packets to a different VLAN
+- (Use 100Mbps GPS or swap the beckoff PTP module to the 1Gbps module)
+- (Stop the timing adjustment during the shutter movement)
   
-This is especially important as the QoS solution might confuse the jGroups network traffic, which is the Camera control communication. Constructing a dedicated PTP VLAN is more likely to be a solution.
+VLAN might be especially important as the QoS solution might confuse the jGroups network traffic, which is the Camera control communication. Constructing a dedicated PTP VLAN is more likely to be a solution. The last two solutions are not realistic at this moment.
 
 ## References
 - [MOXA EDS-G516E-T manual](https://cdn-cms-frontdoor-dfc8ebanh6bkb3hs.a02.azurefd.net/getmedia/e3be8aa7-8a55-48e9-856d-ad9404200344/moxa-managed-ethernet-switch-ui-2.0-fw-5.x-user-manual-v2.7.pdf)
