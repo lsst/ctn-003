@@ -117,5 +117,5 @@ Epoch no.:                   0
 External (PTP) time:         Wed, 16 Jul 2025 17:40:44.907797 UTC
 ```
 
-We don't totally understand but ~1000 sec statistics was shown in the fig below.
+We don't totally understand, but ~1000 sec statistics were shown in the fig below, suggesting that the offset from master somehow gets back to have a 2ms delay.
 ![delay](figs/delay.png)
