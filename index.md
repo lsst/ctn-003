@@ -12,7 +12,7 @@ The Sonoma Network Time Server, equipped with a PTP/IEEE-1588 system, has been d
 
 The Camera network comprises at least two network switches:
 - the Leaf network switch
-- the Moxa network switch.
+- the Moxa network switch (EDS-G516E-T).
 
 The Leaf switch is configured as a Boundary clock.
 
