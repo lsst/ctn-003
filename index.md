@@ -95,7 +95,7 @@ Epoch no.:                   0
 External (PTP) time:         Mon, 14 Jul 2025 19:07:22.492342 UTC
 ```
 
-A: Power cycling PLC/HCU will make it small and scattered around 0. (but currently it is still somehow biased by 2ms level.)
+### A: Power cycling PLC/HCU will make it small and scattered around 0. (but currently it is still somehow biased by 2ms level.)
 ```
 [ccs@lsstcam-shutter02 ~]$ /usr/local/bin/readPtpDiag.sh 
 HCU date and time:           2025-06-09 17:58:35.614918
