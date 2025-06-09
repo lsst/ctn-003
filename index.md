@@ -13,6 +13,7 @@ The Sonoma Network Time Server, equipped with a PTP/IEEE-1588 system, has been d
 The Camera network comprises at least two network switches:
 - the Leaf network switch
 - the Moxa network switch.
+
 The Leaf switch is configured as a Boundary clock.
 
 The PTP client in the Camera is the Beckoff EL6688 device. This device supports a 100Mbps network, while all other networks accessible from the Moxa switch are 1Gbps.
@@ -41,4 +42,5 @@ Based on these observations, it is recommended to adopt the Transparent Clock mo
 If a jitter of 0.1 milliseconds becomes a concern, we could further optimize the network by:
 - Prioritizing PTP packets on the Camera network using QoS
 - Separating PTP packets to a different VLAN
+  
 This is especially important as the QoS solution might confuse the jGroups network traffic, which is the Camera control communication. Constructing a dedicated PTP VLAN is more likely to be a solution.
