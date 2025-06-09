@@ -116,3 +116,6 @@ Leap59?                      False
 Epoch no.:                   0
 External (PTP) time:         Wed, 16 Jul 2025 17:40:44.907797 UTC
 ```
+
+We don't totally understand but ~1000 sec statistics was shown in the fig below.
+![delay](figs/delay.png)
