@@ -13,15 +13,18 @@ license.id = "CC-BY-4.0"
 state = "draft"
 
 [[technote.authors]]
-name.given = "Yousuke"
-name.family = "Utsumi"
 internal_id = "utsumiy"
-orcid = "0000-0001-6161-8988"
+orcid = "https://orcid.org/0000-0001-6161-8988"
+name = {given = "Yousuke", family = "Utsumi"}
 [[technote.authors.affiliations]]
 name = "National Astronomical Observatory of Japan"
 internal_id = "NAOJ"
 address = "2-21-1 Osawa, Mitaka, Tokyo 181-8588, Japan"
 
+[[technote.authors.affiliations]]
+name = "National Astronomical Observatory of Japan"
+internal_id = "NAOJ-Chile"
+address = "Chile Observatory, Los Abedules 3085, Vitacura, Santiago, Chile"
 [[technote.authors]]
 name.given = "Theo"
 name.family = "Shutt"
