@@ -7,6 +7,15 @@ This document describes how to configure the PTP on the MOXA network switch in t
 ## Introduction
 The shutter system of the LSST Camera utilizes hall sensors and motor encoders to measure timing of passing the shutter blade. During the testing period and the initial phase of comissioning following the Precise Time Protocol (PTP)'s implementation, a gap of approximately 10 milliseconds was observed. This document outlines the configuration, test outcomes, recommendations, and potential further optimization strategies. 
 
+## Issues
+This is the observation. 
+![Motion Profile](figs/MC_O_20250603_000104.png)
+
+In a log the following error message has been observed.
+```
+[2025-06-03T16:07:13.660+0000] WARNING: Raised Alert MOTION (Check of motion profile using Hall data.) at severity WARNING 1 time. Last cause : "There were 134 Hall transitions more than 5.00000 mm off prediction.". Overall AlertState= ALARM (org.lsst.ccs.utilities.logging.Logger log)
+```
+
 ## Configuration
 ### GPS
 The Sonoma Network Time Server, equipped with a PTP/IEEE-1588 system, has been deployed at the Vera C. Rubin Observatory. This device receives GPS signals and utilizes the Precise Timing Protocol (PTP) to transport precise clocks over the Camera network. The Sonoma device functions as a Grandmaster in this network. GPS is configured as follows:
