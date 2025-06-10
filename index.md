@@ -81,7 +81,7 @@ VLAN might be especially important as the QoS solution might confuse the jGroups
 - [Manual for CCS Shutter System](https://docs.google.com/document/d/1k-oAwnY8rhwuz5pN1PkQU-riK-ZKio4tmEnwgZLlOFM/edit?tab=t.0#heading=h.t2ammhkqrplq)
 
 ## Appendix
-### Q: Offset from master is too large. What should I do?
+### Q1: Offset from master is too large. What should I do?
 
 ```
 [ccs@lsstcam-shutter02 20250608TC]$ /usr/local/bin/readPtpDiag.sh
@@ -104,7 +104,7 @@ Epoch no.:                   0
 External (PTP) time:         Mon, 14 Jul 2025 19:07:22.492342 UTC
 ```
 
-### A: Power cycling PLC/HCU will make it small and scattered around 0. (but currently it is still somehow biased by 2ms level.)
+#### A: Power cycling PLC/HCU will make it small and scattered around 0. (but currently it is still somehow biased by 2ms level.)
 ```
 [ccs@lsstcam-shutter02 ~]$ /usr/local/bin/readPtpDiag.sh 
 HCU date and time:           2025-06-09 17:58:35.614918
@@ -126,5 +126,12 @@ Epoch no.:                   0
 External (PTP) time:         Wed, 16 Jul 2025 17:40:44.907797 UTC
 ```
 
-We don't totally understand, but ~1000 sec statistics were shown in the fig below, suggesting that the offset from master somehow gets back to have a 2ms delay.
+After giving a power cycle, we still observed a steady offset of ~2 ms in the ~1000 sec statistics of offset from master. This offset could be interpreted as an asymmetric packet travel time introduced by the switch, although PTP v2 is supposed to support asymmetric paths. This could be mitigated by enabling QoS on the MOXA. 
 ![delay](figs/delay.png)
+
+### Q2: `readPtpDiag` is a destractive command. How can I recover the shutter after running this command.
+
+#### A2: Follow the following procedure
+- Resync because it was "sync error", physical state became "OTHERS"
+- click "Prod mode", the state becomes "CLOSED".
+
