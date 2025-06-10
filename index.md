@@ -5,13 +5,13 @@ This document describes how to configure the PTP on the MOXA network switch in t
 ```
 
 ## Introduction
-The shutter system of the LSST Camera utilizes hall sensors and motor encoders to measure timing of passing the shutter blade. During the testing period and the initial phase of comissioning following the Precise Time Protocol (PTP)'s implementation, a gap of approximately 10 milliseconds was observed. This document outlines the configuration, test outcomes, recommendations, and potential further optimization strategies. 
+The shutter system of the LSST Camera utilizes hall sensors and motor encoders to measure the timing of passing the shutter blade. During the testing period and the initial phase of commissioning following enabling the Precise Time Protocol (PTP)'s option, a gap of an order of 10 milliseconds was observed. This document outlines the configuration, test outcomes, recommendations, and potential further optimization strategies. 
 
 ## Issues
-This is the observation. 
+The motion profile for an exposure is shown. For one exposure, there are two profiles for opening and closing. We fit the profiles with a model to parameterize the motion profile. In the example below, there is a gap of 100 ms observed in the open motion. The closing profile is regular. The right column is the residual of the fit.  There are separate position sensors of hall and encoders. Each is shown.
 ![Motion Profile](figs/MC_O_20250603_000104.png)
 
-In a log the following error message has been observed.
+In a log the following error message has been observed. This is also logged in a CCS alert viewer as a MOTION alert. 
 ```
 [2025-06-03T16:07:13.660+0000] WARNING: Raised Alert MOTION (Check of motion profile using Hall data.) at severity WARNING 1 time. Last cause : "There were 134 Hall transitions more than 5.00000 mm off prediction.". Overall AlertState= ALARM (org.lsst.ccs.utilities.logging.Logger log)
 ```
