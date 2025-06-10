@@ -26,12 +26,20 @@ name.given = "Theo"
 name.family = "Shutt"
 
 [[technote.authors]]
+name.given = "Shuang"
+name.family = "Laing"
+
+[[technote.authors]]
 name.given = "Stuart"
 name.family = "Marshall"
 
 [[technote.authors]]
 name.given = "Tony"
 name.family = "Johnson"
+
+[[technote.authors]]
+name.given = "Tether"
+name.family = "Steve"
 
 [[technote.authors]]
 name.given = "Julio"
