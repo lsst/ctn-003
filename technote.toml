@@ -38,8 +38,8 @@ name.given = "Tony"
 name.family = "Johnson"
 
 [[technote.authors]]
-name.given = "Tether"
-name.family = "Steve"
+name.given = "Steve"
+name.family = "Tether""
 
 [[technote.authors]]
 name.given = "Julio"
