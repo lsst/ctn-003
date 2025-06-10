@@ -1,7 +1,7 @@
 # Configuring the PTP setting on the MOXA network switch
 
 ```{abstract}
-This document describes how to configure the PTP on the MOXA network switch in the Camera to prevent accidental gaps in the motion profile, which left "Raised Alert MOTION (Check of motion profile using Hall data.)" in a shutter log file. The conclusion is that we should use Transparent Clock in our configuration where we have both 100Mbps/1Gbps.
+This document describes how to configure the PTP on the MOXA network switch in the Camera to prevent accidental gaps in the motion profile, which left "Raised Alert MOTION (Check of motion profile using Hall data.)" in a shutter log file. The conclusion is that Transparent Clock should be used in our configuration where both 100Mbps/1Gbps devices exist.
 ```
 
 ## Introduction
