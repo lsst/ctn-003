@@ -1,7 +1,7 @@
 # Configuring the PTP setting on the MOXA network switch
 
 ```{abstract}
-This document describes how to configure the PTP on the MOXA network switch in the Camera to prevent accidental gaps in the motion profile, which left "Raised Alert MOTION (Check of motion profile using Hall data.)" in a shutter log file. The conclusion is that Transparent Clock should be used in our configuration where both 100Mbps/1Gbps devices exist.
+This document describes how to configure the PTP on the MOXA network switch in the Camera to prevent accidental gaps in the motion profile, which left "Raised Alert MOTION (Check of motion profile using Hall data.)" in a shutter log file. The conclusion is that no PTP role on MOXA should be given in our configuration.
 ```
 
 ## Introduction
@@ -57,23 +57,18 @@ We conducted a series of measurements to assess the Mean Path Delay for 1000 ite
 
 ![Mean Path Delay](figs/meanpathdelay.png)
 
-The result is shown in the figure above. The Moxa as Boundary Clock configuration exhibited significant jitter, reaching a value of 1.2ms. This high jitter is likely the root cause of the MOTION alert. Conversely, the Moxa as Transparent Clock configuration demonstrated minimal jitter, with a value of 0.1ms. The Leaf Switch configuration, while offering a low jitter of 0.0001ms, does not account for the delay introduced by the Moxa.
+The result is shown in the figure above. The Moxa as Boundary Clock configuration exhibited significant jitter, reaching a value of 1.2ms. This high jitter is likely the root cause of the MOTION alert. Conversely, the Moxa as Transparent Clock configuration demonstrated minimal jitter, with a value of 0.1ms. The Leaf Switch configuration offers a sifnificant low jitter of 0.0001ms.
 
 ![Motion Profile Tickets](figs/motionprofileticks.png)
 
-While the accuracy of 0.1ms may not be the primary concern, it is worth noting that the motion profiles indicate a mean time tick of 4.06 msec and a standard deviation of 3.57 msec. Therefore, a slight deviation from this accuracy level is unlikely to have a significant impact on the overall performance.
+It is worth noting that the motion profiles indicate a mean time tick of 4.06 msec and a standard deviation of 3.57 msec. Therefore, a slight jitter of 0.0001ms from this accuracy level is unlikely to have a impact on the overall performance.
+
+The plot below shows `Offset from master` for both using MOXA as TC (offset) and using the Leaf switch as BC (leaf). There is a significant improvement by the change.
+
+![delay](figs/delay.png)
 
 ## Recommendation
-Based on these observations, it is recommended to adopt the Transparent Clock mode for the Moxa. 
-
-## Further tuning
-If a jitter of 0.1 milliseconds becomes a concern, we could further optimize the network by:
-- Prioritizing PTP packets on the Camera network using QoS
-- Separating PTP packets to a different VLAN
-- (Use 100Mbps GPS or swap the beckoff PTP module to the 1Gbps module)
-- (Stop the timing adjustment during the shutter movement)
-  
-VLAN might be especially important as the QoS solution might confuse the jGroups network traffic, which is the Camera control communication. Constructing a dedicated PTP VLAN is more likely to be a solution. The last two solutions are not realistic at this moment.
+Based on these observations, it is recommended to disalble the MOXA's PTP, but using the leaf switch as the boundary clock.
 
 ## References
 - [MOXA EDS-G516E-T manual](https://cdn-cms-frontdoor-dfc8ebanh6bkb3hs.a02.azurefd.net/getmedia/e3be8aa7-8a55-48e9-856d-ad9404200344/moxa-managed-ethernet-switch-ui-2.0-fw-5.x-user-manual-v2.7.pdf)
@@ -126,8 +121,7 @@ Epoch no.:                   0
 External (PTP) time:         Wed, 16 Jul 2025 17:40:44.907797 UTC
 ```
 
-After giving a power cycle, we still observed a steady offset of ~2 ms in the ~1000 sec statistics of offset from master. This offset could be interpreted as an asymmetric packet travel time introduced by the switch, although PTP v2 is supposed to support asymmetric paths. This could be mitigated by enabling QoS on the MOXA. 
-![delay](figs/delay.png)
+After giving a power cycle, we still observed a steady offset of ~2 ms in the ~1000 sec statistics of offset from master. This offset could be interpreted as an asymmetric packet travel time introduced by the switch, although PTP v2 is supposed to support asymmetric paths. This was mitigated by switching from the MOXA as Transparent Clock to the leaf switch as the Boundary Clock. 
 
 ### Q2: `readPtpDiag` is a destractive command. How can I recover the shutter after running this command.
 
