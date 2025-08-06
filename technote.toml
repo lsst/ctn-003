@@ -21,26 +21,54 @@ name = {given = "Yousuke", family = "Utsumi"}
 name = "National Astronomical Observatory of Japan"
 internal_id = "NAOJ-Chile"
 address = "Chile Observatory, Los Abedules 3085, Vitacura, Santiago, Chile"
+ror = "https://ror.org/052rrw050"
 [[technote.authors]]
-name.given = "Theo"
-name.family = "Shutt"
+internal_id = "schuttt"
+name = {given = "Theo", family = "Schutt"}
+orcid = "https://orcid.org/0000-0002-7187-9628"
 
+[[technote.authors.affiliations]]
+name = "SLAC National Accelerator Laboratory"
+internal_id = "SLAC-Kavli"
+ror = "https://ror.org/00pwqz914"
 [[technote.authors]]
-name.given = "Shuang"
-name.family = "Laing"
+internal_id = "liangs"
+name = {given = "Shuang", family = "Liang"}
 
+[[technote.authors.affiliations]]
+name = "SLAC National Accelerator Laboratory"
+internal_id = "SLAC"
+ror = "https://ror.org/05gzmn429"
 [[technote.authors]]
-name.given = "Stuart"
-name.family = "Marshall"
+internal_id = "marshalls"
+name = {given = "Stuart", family = "Marshall"}
 
+[[technote.authors.affiliations]]
+name = "SLAC National Accelerator Laboratory"
+internal_id = "SLAC-Kavli"
+ror = "https://ror.org/00pwqz914"
 [[technote.authors]]
-name.given = "Tony"
-name.family = "Johnson"
+internal_id = "johnsonas"
+name = {given = "Anthony S.", family = "Johnson"}
+orcid = "https://orcid.org/0000-0002-5729-2716"
 
+[[technote.authors.affiliations]]
+name = "SLAC National Accelerator Laboratory"
+internal_id = "SLAC"
+ror = "https://ror.org/05gzmn429"
 [[technote.authors]]
-name.given = "Steve"
-name.family = "Tether"
+internal_id = "tethersa"
+name = {given = "Stephen A.", family = "Tether"}
 
+[[technote.authors.affiliations]]
+name = "SLAC National Accelerator Laboratory"
+internal_id = "SLAC"
+ror = "https://ror.org/05gzmn429"
 [[technote.authors]]
-name.given = "Julio"
-name.family = "Constanzo "
+internal_id = "constanzocordovaje"
+name = {given = "Julio Eduardo", family = "Constanzo Córdova"}
+orcid = "https://orcid.org/0009-0004-0368-0643"
+[[technote.authors.affiliations]]
+name = "Vera C. Rubin Observatory"
+internal_id = "RubinObsC"
+ror = "https://ror.org/048g3cy84"
