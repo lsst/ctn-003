@@ -20,7 +20,8 @@ In a log the following error message has been observed. This is also logged in a
 ### GPS
 The Sonoma Network Time Server, equipped with a PTP/IEEE-1588 system, has been deployed at the Vera C. Rubin Observatory. This device receives GPS signals and utilizes the Precise Timing Protocol (PTP) to transport precise clocks over the Camera network. The Sonoma device functions as a Grandmaster in this network. GPS is configured as follows:
 
-![GPS configuration 1](figs/gps1.png) ![GPS configuration 2](figs/gps2.png)
+![GPS configuration 1](figs/gps1.png)
+![GPS configuration 2](figs/gps2.png)
 
 ### Network 
 The Camera network comprises at least two network switches:
@@ -57,7 +58,7 @@ We conducted a series of measurements to assess the Mean Path Delay for 1000 ite
 
 ![Mean Path Delay](figs/meanpathdelay.png)
 
-The result is shown in the figure above. The Moxa as Boundary Clock configuration exhibited significant jitter, reaching a value of 1.2ms. This high jitter is likely the root cause of the MOTION alert. Conversely, the Moxa as Transparent Clock configuration demonstrated minimal jitter, with a value of 0.1ms. The Leaf Switch configuration offers a sifnificant low jitter of 0.0001ms.
+The result is shown in the figure above. The Moxa as Boundary Clock configuration exhibited significant jitter, reaching a value of 1.2ms. This high jitter is likely the root cause of the MOTION alert. Conversely, the Moxa as Transparent Clock configuration demonstrated minimal jitter, with a value of 0.1ms. The Leaf Switch configuration offers a significant low jitter of 0.0001ms.
 
 ![Motion Profile Tickets](figs/motionprofileticks.png)
 
@@ -68,7 +69,7 @@ The plot below shows `Offset from master` for both using MOXA as TC (offset) and
 ![delay](figs/delay.png)
 
 ## Recommendation
-Based on these observations, it is recommended to disalble the MOXA's PTP, but using the leaf switch as the boundary clock.
+Based on these observations, it is recommended to disable the MOXA's PTP, but using the leaf switch as the boundary clock.
 
 ## References
 - [MOXA EDS-G516E-T manual](https://cdn-cms-frontdoor-dfc8ebanh6bkb3hs.a02.azurefd.net/getmedia/e3be8aa7-8a55-48e9-856d-ad9404200344/moxa-managed-ethernet-switch-ui-2.0-fw-5.x-user-manual-v2.7.pdf)
@@ -122,6 +123,8 @@ External (PTP) time:         Wed, 16 Jul 2025 17:40:44.907797 UTC
 ```
 
 After giving a power cycle, we still observed a steady offset of ~2 ms in the ~1000 sec statistics of offset from master. This offset could be interpreted as an asymmetric packet travel time introduced by the switch, although PTP v2 is supposed to support asymmetric paths. This was mitigated by switching from the MOXA as Transparent Clock to the leaf switch as the Boundary Clock. 
+
+Note that the external (PTP) time was found to be of no interest by the vendor.
 
 ### Q2: `readPtpDiag` is a destractive command. How can I recover the shutter after running this command.
 
