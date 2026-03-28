@@ -62,7 +62,7 @@ The result is shown in the figure above. The Moxa as Boundary Clock configuratio
 
 ![Motion Profile Tickets](figs/motionprofileticks.png)
 
-It is worth noting that the motion profiles indicate a mean time tick of 4.06 msec and a standard deviation of 3.57 msec. Therefore, a slight jitter of 0.0001ms from this accuracy level is unlikely to have a impact on the overall performance.
+It is worth noting that the motion profiles indicate a mean time tick of 4.06 msec and a standard deviation of 3.57 msec. Therefore, a slight jitter of 0.0001ms from this accuracy level is unlikely to have an impact on the overall performance.
 
 The plot below shows `Offset from master` for both using MOXA as TC (offset) and using the Leaf switch as BC (leaf). There is a significant improvement by the change.
 
@@ -100,7 +100,9 @@ Epoch no.:                   0
 External (PTP) time:         Mon, 14 Jul 2025 19:07:22.492342 UTC
 ```
 
-#### A: Power cycling PLC/HCU will make it small and scattered around 0. (but currently it is still somehow biased by 2ms level.)
+#### A: Power cycling PLC/HCU will make the offset small and scattered around 0. 
+However, a steady bias of ~2ms remains in long-term statistics (~1000 sec).
+
 ```
 [ccs@lsstcam-shutter02 ~]$ /usr/local/bin/readPtpDiag.sh 
 HCU date and time:           2025-06-09 17:58:35.614918
@@ -129,6 +131,7 @@ Note that the external (PTP) time was found to be of no interest by the vendor.
 ### Q2: `readPtpDiag` is a destractive command. How can I recover the shutter after running this command.
 
 #### A2: Follow the following procedure
-- Resync because it was "sync error", physical state became "OTHERS"
-- click "Prod mode", the state becomes "CLOSED".
-
+1. **Resync**: The shutter enters "sync error" state with physical state "OTHERS". 
+   - Navigate to the control panel and click "Resync" button.
+2. **Production Mode**: Click "Prod mode" in the interface.
+   - This transitions the state from "CLOSED" to operational readiness.
